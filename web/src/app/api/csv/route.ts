@@ -8,9 +8,8 @@ export async function POST(req: Request) {
       body: formData,
     });
     const data = await response.json();
-    console.log(data);
 
-    return NextResponse.json({ message: "CSV Uploaded" });
+    return NextResponse.json(data);
   } catch (error) {
     console.log(error);
     return new NextResponse("Internal error", { status: 500 });
