@@ -1,5 +1,6 @@
 import { Pool } from "pg";
 import dotenv from "dotenv";
+import { ContactModel } from "./contact.model";
 
 dotenv.config();
 
@@ -16,12 +17,7 @@ export const saveContact = async ({
   email,
   firstName: first_name,
   lastName: last_name = null,
-}: {
-  requestId: string;
-  email: string;
-  firstName: string;
-  lastName?: string | null;
-}) => {
+}: ContactModel) => {
   pool
     .query(
       "INSERT INTO contacts (request_id, email, first_name, last_name) VALUES ($1, $2, $3, $4) RETURNING id, first_name, email",
@@ -30,4 +26,21 @@ export const saveContact = async ({
     .catch((error) => {
       console.error(error);
     });
+};
+
+export const createTable = async () => {
+  pool
+    .query(
+      `
+    CREATE TABLE IF NOT EXISTS contacts (
+      id SERIAL PRIMARY KEY,
+      request_id UUID NOT NULL,
+      email VARCHAR(255) NOT NULL,
+      first_name VARCHAR(255) NOT NULL,
+      last_name VARCHAR(255)
+    );
+  `
+    )
+    .then(() => console.log("Table created successfully"))
+    .catch((error) => console.error(error));
 };

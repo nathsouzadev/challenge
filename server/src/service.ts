@@ -2,16 +2,9 @@ import { createReadStream } from "fs";
 import csv from "csv-parser";
 import { saveContact } from "./db";
 import { randomUUID } from "crypto";
+import { ContactModel } from "./contact.model";
 
-export const adapter = (
-  data: string[],
-  requestId: string
-): {
-  requestId: string;
-  email: string;
-  firstName: string;
-  lastName: string;
-} => {
+export const adapter = (data: string[], requestId: string): ContactModel => {
   const email = data[1];
   const fullName = data[0].split(" ");
   const firstName = fullName[0];

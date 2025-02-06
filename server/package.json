@@ -5,6 +5,7 @@
   "scripts": {
     "start": "nodemon ./dist/index.js",
     "dev": "ts-node-dev --input-type=module src/index.ts",
+    "db": "ts-node-dev --input-type=module src/createTable.ts",
     "build": "tsc",
     "test": "jest",
     "test:watch": "jest --watch",

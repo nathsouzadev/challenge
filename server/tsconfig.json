@@ -14,7 +14,7 @@
   },
   "include": [
     "src/**/*.ts" 
-],
+, "src/createTable.ts"],
   "exclude": [
     "node_modules",
     "__tests__"
