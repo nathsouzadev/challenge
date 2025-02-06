@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 export async function POST(req: Request) {
   try {
     const formData = await req.formData();
-    const response = await fetch(`http://localhost:3001/csv`, {
+    const response = await fetch(`${process.env.SERVICE_UPLOAD}`, {
       method: "POST",
       body: formData,
     });
