@@ -2,11 +2,13 @@ import express, { Request, Response, Router } from "express";
 import multer from "multer";
 import { save } from "./service";
 import path from "path";
+import cors from "cors";
 
 export const app = express();
 const router = Router();
 
 app.use(express.json());
+app.use(cors());
 
 const storage = multer.diskStorage({
   destination: path.join("./uploads"),
